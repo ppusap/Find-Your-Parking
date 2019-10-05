@@ -22,7 +22,7 @@ class LocationsTableViewController: UITableViewController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.tabBarItem.title = "Parking Lots"
+        tabBarItem.title = "Parking Lots"
         tabBarItem.image = UIImage(named: "car")
 
     }

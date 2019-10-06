@@ -43,7 +43,7 @@ class LocationsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 1. Instantiate a MenuTableViewController
-        let menuTVC = storyboard!.instantiateViewController(withIdentifier: "MenuTableViewController") as! MenuTableViewController
+        let menuTVC = storyboard!.instantiateViewController(withIdentifier: "ParkingViewController") as! ParkingCollectionViewController
         
         // 2. Configure its Restaurant
         

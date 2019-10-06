@@ -12,6 +12,7 @@ class LocationsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Choose Your Location"
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -31,12 +32,25 @@ class LocationsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 0
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 1. Instantiate a MenuTableViewController
+        let menuTVC = storyboard!.instantiateViewController(withIdentifier: "MenuTableViewController") as! MenuTableViewController
+        
+        // 2. Configure its Restaurant
+        
+        menuTVC.restaurant = FoodCourt.shared[indexPath.row]
+        // 3. Push it on to the navigation controller's stack
+        
+        self.navigationController!.pushViewController(menuTVC, animated: true)
     }
 
     /*

@@ -37,7 +37,7 @@ class ParkingCollectionViewController: UICollectionViewController {
     */
 
     // MARK: UICollectionViewDataSource
-
+//updated 6 sections
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 6

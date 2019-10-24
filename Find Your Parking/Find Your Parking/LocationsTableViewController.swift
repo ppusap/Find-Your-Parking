@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import CloudKit
 
 class LocationsTableViewController: UITableViewController {
     
-    var superMarket:SuperMarkets!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Choose Your Location"
+        checkForLogin()
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -23,12 +25,32 @@ class LocationsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    //added titlehihello
+    func checkForLogin(){
+        
+        Custodian.defaultContainer.accountStatus(){
+            (accountStatus, error) in
+            if accountStatus == .noAccount {
+                DispatchQueue.main.async {
+                    UIViewController.alert(title: "Sign in to iCloud", message: "Sign in to your iCloud account to write records. On the Home screen, launch Settings, tap iCloud, and enter your Apple ID. Turn iCloud Drive on. If you don't have an iCloud account, tap Create a new Apple ID.")
+                }
+            }
+        }
+    }
+    //added
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         tabBarItem.title = "Parking Lots"
         tabBarItem.image = UIImage(named: "car")
         
+    }
+    
+    @objc func fetchAllSuperMarketDetails()
+    {
+        SuperMarkets.shared.fetchAllSuperMarketDetails()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchAllSuperMarketDetails()
     }
     
     // MARK: - Table view data source
@@ -40,38 +62,38 @@ class LocationsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return SuperMarkets.shared.numSuparkets()
+        return SuperMarkets.shared.superMarketDetails.count
     }
     
     
     
     
-  
+    
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "location", for: indexPath)
         
         //Configure the cell...
-        let locations = SuperMarkets.shared[indexPath.row]
+        let locations = SuperMarkets.shared.superMarketDetails[indexPath.row]
         cell.textLabel?.text = locations.marketName
+        cell.accessoryType = .disclosureIndicator
         
         return cell
     }
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-              // 1. Instantiate a MenuTableViewController
-        var slots = storyboard!.instantiateViewController(withIdentifier: "ParkingViewController") as! ParkingCollectionViewController
+        // 1. Instantiate a MenuTableViewController
         
-                // 2. Configure its Restaurant
+        let slots = storyboard?.instantiateViewController(withIdentifier: "ParkingViewController") as! ParkingCollectionViewController
+        slots.superMarket=SuperMarkets.shared.superMarketDetails[indexPath.row]
         
-               // menuTVC.restaurant = FoodCourt.shared[indexPath.row]
-       // slots=SuperMarkets.shared[indexPath.row]
-                // 3. Push it on to the navigation controller's stack
+        // 2. Configure its Restaurant
         
-                self.navigationController!.pushViewController(slots, animated: true)
-            }
+        
+        self.navigationController!.pushViewController(slots, animated: true)
+    }
     
     
     

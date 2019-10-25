@@ -10,13 +10,13 @@ import UIKit
 
 class MapViewController: UIViewController {
     
-    @IBOutlet weak var locationLBL: UILabel!
+    @IBOutlet weak var parkingNumberLBL:UILabel!
     
-    @IBOutlet weak var hoursLBL: UILabel!
+    @IBOutlet weak var timeLBL:UILabel!
     
-    @IBAction func directions(_ sender: UIButton) {
-        let parkingVC = self.storyboard?.instantiateViewController(withIdentifier: "ParkingViewController") as! ParkingViewController
-        self.navigationController?.pushViewController(parkingVC, animated: true)
+    @IBAction func viewMap(_ sender: Any) {
+        print("Button pressed")
+        self.performSegue(withIdentifier:"ParkingViewSegue", sender: self)
     }
     
     
@@ -42,8 +42,3 @@ class MapViewController: UIViewController {
     
     
 }
-
-
-
-
-

@@ -112,6 +112,22 @@ class DetailLocation:Equatable{
             
         }
     }
+    var slot:String { // actual identification of each parking slot (e.g., A1, A2 or whatever)
+        get {
+            return record["slot"]!
+        }
+        set(slot){
+            record["slot"] = slot
+        }
+    }
+    var isOccupied:Bool {
+        get {
+            return record["isOccupied"]!
+        }
+        set(isOccupied){
+            record["isOccupied"] = isOccupied
+        }
+    }
     var superMarketDetails:CKRecord.Reference!{
         get{
             return record["superMarketDetails"]

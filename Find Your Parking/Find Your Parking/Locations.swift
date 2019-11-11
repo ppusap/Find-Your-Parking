@@ -149,7 +149,9 @@ class SuperMarkets {
         return _shared
     }
     
-    private init(){}
+    private init(){
+        populateCloudKitDatabase()
+    }
     
     //    init(marketName:String, hours: String, parkingLotLocation:[ParkingLots] = []){
     //        self.marketName = marketName

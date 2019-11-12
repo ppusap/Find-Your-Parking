@@ -155,7 +155,7 @@ class SuperMarkets {
     
     private static var _shared:SuperMarkets!
     
-    var detailLocation:[ParkingLotLocation]=[]
+    var parkingLotLocation:[ParkingLotLocation]=[]
     var superMarkets:[SuperMarket]=[]
     
     static var shared:SuperMarkets{
@@ -201,14 +201,14 @@ class SuperMarkets {
         superMarkets=[SuperMarket(marketName: "Walmart", hours: "8AM-12PM") ,SuperMarket(marketName: "Hyvee", hours: "8AM-12PM"),
                             SuperMarket(marketName: "Dollar General", hours: "8AM-12PM")]
         
-        detailLocation=[ParkingLotLocation(parkingLocation: ("North Side"), superMarkets: nil),
+        parkingLotLocation=[ParkingLotLocation(parkingLocation: ("North Side"), superMarkets: nil),
                         ParkingLotLocation(parkingLocation: ("South Side"), superMarkets: nil),
                         ParkingLotLocation(parkingLocation: ("Main Parking Lot"), superMarkets: nil),
                         ParkingLotLocation(parkingLocation: ("East Side"), superMarkets: nil)]
         
-        location=[superMarkets[0]:[detailLocation[0],detailLocation[1],detailLocation[2]],
-                  superMarkets[1]:[detailLocation[0],detailLocation[1],detailLocation[2]],
-                  superMarkets[2]:[detailLocation[0],detailLocation[1],detailLocation[2]]]
+        location=[superMarkets[0]:[parkingLotLocation[0],parkingLotLocation[1],parkingLotLocation[2]],
+                  superMarkets[1]:[parkingLotLocation[0],parkingLotLocation[1],parkingLotLocation[2]],
+                  superMarkets[2]:[parkingLotLocation[0],parkingLotLocation[1],parkingLotLocation[2]]]
         
         //        for(superMarketDetails,detailLocation) in location
         //        {

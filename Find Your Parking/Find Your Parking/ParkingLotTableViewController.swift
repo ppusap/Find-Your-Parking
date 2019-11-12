@@ -29,7 +29,7 @@ class ParkingLotTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return SuperMarkets.shared.detailLocation.count
+        return SuperMarkets.shared.parkingLotLocation.count
     }
 
    
@@ -37,7 +37,7 @@ class ParkingLotTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
-        let parkings = SuperMarkets.shared.detailLocation[indexPath.row]
+        let parkings = SuperMarkets.shared.parkingLotLocation[indexPath.row]
         cell.textLabel?.text = parkings.parkingLocation
 //        cell.detailTextLabel?.text = "Available:\(), Occupied:\()"
         

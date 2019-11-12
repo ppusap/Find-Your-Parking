@@ -11,7 +11,7 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class ParkingCollectionViewController: UICollectionViewController {
-    var superMarket:SuperMarketDetails!
+    var superMarket:SuperMarket!
     
     var cellColor=true
 

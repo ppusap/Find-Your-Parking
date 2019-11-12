@@ -48,7 +48,7 @@ class Custodian {
 //    var parkingLotLocation :(locationName:String,locationNumber:String)
 //}
 
-class SuperMarketDetails:Equatable,CKRecordValueProtocol,Hashable{
+class SuperMarket:Equatable,CKRecordValueProtocol,Hashable{
     var record:CKRecord!
     
     func hash(into hasher:inout Hasher)
@@ -81,8 +81,8 @@ class SuperMarketDetails:Equatable,CKRecordValueProtocol,Hashable{
     }
     
     init(marketName:String, hours:String){
-        let SuperMarketDetailsRecordId = CKRecord.ID(recordName: "\(marketName)")                    // 1. create a record ID
-        self.record = CKRecord(recordType: "SuperMarketDetails", recordID: SuperMarketDetailsRecordId)  // 2. create a record using that record ID
+        let SuperMarketsRecordId = CKRecord.ID(recordName: "\(marketName)")                    // 1. create a record ID
+        self.record = CKRecord(recordType: "SuperMarketDetails", recordID: SuperMarketsRecordId)  // 2. create a record using that record ID
         self.record["marketName"] = marketName
         self.record["hours"] = "hours"
         self.marketName = marketName
@@ -91,7 +91,7 @@ class SuperMarketDetails:Equatable,CKRecordValueProtocol,Hashable{
     }
     
     // Two teachers are deemed equal if they have the same ssn
-    static func==(lhs:SuperMarketDetails,rhs:SuperMarketDetails)->Bool {
+    static func==(lhs:SuperMarket,rhs:SuperMarket)->Bool {
         return lhs.marketName == rhs.marketName
     }
     
@@ -100,7 +100,7 @@ class SuperMarketDetails:Equatable,CKRecordValueProtocol,Hashable{
     
 }
 
-class DetailLocation:Equatable{
+class ParkingLotLocation:Equatable{
     var record:CKRecord!
     var parkingLocation:String //May change this later
     {
@@ -128,25 +128,25 @@ class DetailLocation:Equatable{
             record["isOccupied"] = isOccupied
         }
     }
-    var superMarketDetails:CKRecord.Reference!{
+    var superMarkets:CKRecord.Reference!{
         get{
-            return record["superMarketDetails"]
+            return record["superMarkets"]
         }
-        set(superMarketDetails){
-            record["superMarketDetails"]=superMarketDetails
+        set(superMarkets){
+            record["superMarkets"]=superMarkets
         }
     }
     init (record:CKRecord)
     {
         self.record=record
     }
-    init(parkingLocation:String,superMarketDetails:CKRecord.Reference?){
+    init(parkingLocation:String,superMarkets:CKRecord.Reference?){
         let parkingLocationId = CKRecord.ID(recordName:"\(parkingLocation)")
-        self.record=CKRecord(recordType: "DetailLocation", recordID: parkingLocationId)
+        self.record=CKRecord(recordType: "ParkingLotLocation", recordID: parkingLocationId)
         self.parkingLocation=parkingLocation
-        self.superMarketDetails=superMarketDetails
+        self.superMarkets=superMarkets
     }
-    static func == (lhs:DetailLocation,rhs:DetailLocation)->Bool{
+    static func == (lhs:ParkingLotLocation,rhs:ParkingLotLocation)->Bool{
         return lhs.parkingLocation==rhs.parkingLocation
     }
 }
@@ -155,8 +155,8 @@ class SuperMarkets {
     
     private static var _shared:SuperMarkets!
     
-    var detailLocation:[DetailLocation]=[]
-    var superMarketDetails:[SuperMarketDetails]=[]
+    var detailLocation:[ParkingLotLocation]=[]
+    var superMarkets:[SuperMarket]=[]
     
     static var shared:SuperMarkets{
         if _shared == nil{
@@ -184,10 +184,10 @@ class SuperMarkets {
             }
             else
             {
-                SuperMarkets.shared.superMarketDetails=[]
+                SuperMarkets.shared.superMarkets=[]
                 for marketRecords in superMarketDetailsRecords!{
-                    let details=SuperMarketDetails(record: marketRecords)
-                    SuperMarkets.shared.superMarketDetails.append(details)
+                    let details=SuperMarket(record: marketRecords)
+                    SuperMarkets.shared.superMarkets.append(details)
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue:"All Super Markets are Fetched"), object: nil)
             }
@@ -197,18 +197,18 @@ class SuperMarkets {
     
     func populateCloudKitDatabase(){
         
-        var location:[SuperMarketDetails:[DetailLocation]]
-        superMarketDetails=[SuperMarketDetails(marketName: "Walmart", hours: "8AM-12PM") ,SuperMarketDetails(marketName: "Hyvee", hours: "8AM-12PM"),
-                            SuperMarketDetails(marketName: "Dollar General", hours: "8AM-12PM")]
+        var location:[SuperMarket:[ParkingLotLocation]]
+        superMarkets=[SuperMarket(marketName: "Walmart", hours: "8AM-12PM") ,SuperMarket(marketName: "Hyvee", hours: "8AM-12PM"),
+                            SuperMarket(marketName: "Dollar General", hours: "8AM-12PM")]
         
-        detailLocation=[DetailLocation(parkingLocation: ("North Side"), superMarketDetails: nil),
-                        DetailLocation(parkingLocation: ("South Side"), superMarketDetails: nil),
-                        DetailLocation(parkingLocation: ("Main Parking Lot"), superMarketDetails: nil),
-                        DetailLocation(parkingLocation: ("East Side"), superMarketDetails: nil)]
+        detailLocation=[ParkingLotLocation(parkingLocation: ("North Side"), superMarkets: nil),
+                        ParkingLotLocation(parkingLocation: ("South Side"), superMarkets: nil),
+                        ParkingLotLocation(parkingLocation: ("Main Parking Lot"), superMarkets: nil),
+                        ParkingLotLocation(parkingLocation: ("East Side"), superMarkets: nil)]
         
-        location=[superMarketDetails[0]:[detailLocation[0],detailLocation[1],detailLocation[2]],
-                  superMarketDetails[1]:[detailLocation[0],detailLocation[1],detailLocation[2]],
-                  superMarketDetails[2]:[detailLocation[0],detailLocation[1],detailLocation[2]]]
+        location=[superMarkets[0]:[detailLocation[0],detailLocation[1],detailLocation[2]],
+                  superMarkets[1]:[detailLocation[0],detailLocation[1],detailLocation[2]],
+                  superMarkets[2]:[detailLocation[0],detailLocation[1],detailLocation[2]]]
         
         //        for(superMarketDetails,detailLocation) in location
         //        {

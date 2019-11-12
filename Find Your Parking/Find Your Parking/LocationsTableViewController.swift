@@ -44,13 +44,13 @@ class LocationsTableViewController: UITableViewController {
         
     }
     
-    @objc func fetchAllSuperMarketDetails()
+    @objc func fetchAllSuperMarkets()
     {
         SuperMarkets.shared.fetchAllSuperMarketDetails()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchAllSuperMarketDetails()
+        fetchAllSuperMarkets()
     }
     
     // MARK: - Table view data source
@@ -62,7 +62,7 @@ class LocationsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return SuperMarkets.shared.superMarketDetails.count
+        return SuperMarkets.shared.superMarkets.count
     }
     
     
@@ -75,7 +75,7 @@ class LocationsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "location", for: indexPath)
         
         //Configure the cell...
-        let locations = SuperMarkets.shared.superMarketDetails[indexPath.row]
+        let locations = SuperMarkets.shared.superMarkets[indexPath.row]
         cell.textLabel?.text = locations.marketName
         cell.accessoryType = .disclosureIndicator
         
@@ -87,7 +87,7 @@ class LocationsTableViewController: UITableViewController {
         // 1. Instantiate a MenuTableViewController
         
         let slots = storyboard?.instantiateViewController(withIdentifier: "ParkingViewController") as! ParkingCollectionViewController
-        slots.superMarket=SuperMarkets.shared.superMarketDetails[indexPath.row]
+        slots.superMarket=SuperMarkets.shared.superMarkets[indexPath.row]
         
         // 2. Configure its Restaurant
         

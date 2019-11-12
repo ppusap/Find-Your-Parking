@@ -10,6 +10,7 @@ import UIKit
 
 class ParkingLotTableViewController: UITableViewController {
 
+    var parkingSlots:ParkingLotLocation!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,15 +35,29 @@ class ParkingLotTableViewController: UITableViewController {
 
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ParkingLotTVC", for: indexPath)
 
         // Configure the cell...
+        
         let parkings = SuperMarkets.shared.parkingLotLocation[indexPath.row]
         cell.textLabel?.text = parkings.parkingLocation
-//        cell.detailTextLabel?.text = "Available:\(), Occupied:\()"
+        cell.detailTextLabel?.text = SuperMarkets.shared.availableSlots()
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 1. Instantiate a MenuTableViewController
+        
+        let parkingLocations = storyboard?.instantiateViewController(withIdentifier: "ParkingCollectionVC") as! ParkingCollectionViewController
+        parkingLocations.superMarket=SuperMarkets.shared.superMarkets[indexPath.row]
+        
+        // 2. Configure its Restaurant
+        
+        
+        self.navigationController!.pushViewController(parkingLocations, animated: true)
+    }
+    
  
 
     /*

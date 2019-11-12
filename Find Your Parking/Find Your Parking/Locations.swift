@@ -90,7 +90,7 @@ class SuperMarket:Equatable,CKRecordValueProtocol,Hashable{
         
     }
     
-    // Two teachers are deemed equal if they have the same ssn
+    //
     static func==(lhs:SuperMarket,rhs:SuperMarket)->Bool {
         return lhs.marketName == rhs.marketName
     }
@@ -102,6 +102,9 @@ class SuperMarket:Equatable,CKRecordValueProtocol,Hashable{
 
 class ParkingLotLocation:Equatable{
     var record:CKRecord!
+    
+
+    
     var parkingLocation:String //May change this later
     {
         get{
@@ -128,6 +131,7 @@ class ParkingLotLocation:Equatable{
             record["isOccupied"] = isOccupied
         }
     }
+    
     var superMarkets:CKRecord.Reference!{
         get{
             return record["superMarkets"]
@@ -140,15 +144,19 @@ class ParkingLotLocation:Equatable{
     {
         self.record=record
     }
-    init(parkingLocation:String,superMarkets:CKRecord.Reference?){
+    init(parkingLocation:String,slot:String,isOccupied:Bool,superMarkets:CKRecord.Reference?){
         let parkingLocationId = CKRecord.ID(recordName:"\(parkingLocation)")
         self.record=CKRecord(recordType: "ParkingLotLocation", recordID: parkingLocationId)
         self.parkingLocation=parkingLocation
+        self.slot=slot
+        self.isOccupied=isOccupied
         self.superMarkets=superMarkets
     }
+
     static func == (lhs:ParkingLotLocation,rhs:ParkingLotLocation)->Bool{
         return lhs.parkingLocation==rhs.parkingLocation
     }
+    
 }
 class SuperMarkets {
     
@@ -157,6 +165,11 @@ class SuperMarkets {
     
     var parkingLotLocation:[ParkingLotLocation]=[]
     var superMarkets:[SuperMarket]=[]
+    var parkingSlots:ParkingLotLocation!
+   
+    
+    var totalAvailableSlots = 1000
+    var totalOccupiedSlots = 0
     
     static var shared:SuperMarkets{
         if _shared == nil{
@@ -174,8 +187,151 @@ class SuperMarkets {
     //        self.hours = hour
     //        self.parkingLotLocation = parkingLotLocation
     //    }
+
+   
     
-    func fetchAllSuperMarketDetails(){
+//    func availableSlots()->String{
+//
+//        for markets in superMarkets
+//        {
+//            if markets.marketName=="Walmart"
+//            {
+//                for lots in parkingLotLocation
+//                {
+//                    if lots.parkingLocation=="North Side"
+//                    {
+//                        if lots.isOccupied==true
+//                        {
+//                            totalAvailableSlots=totalAvailableSlots-1
+//                        }
+//                        else
+//                        {
+//                            totalOccupiedSlots = totalOccupiedSlots+1
+//                        }
+//                    }
+//                    else if lots.parkingLocation=="Main Side"
+//                    {
+//                        if lots.isOccupied==true
+//                        {
+//                            totalAvailableSlots=totalAvailableSlots-1
+//                        }
+//                        else
+//                        {
+//                            totalOccupiedSlots = totalOccupiedSlots+1
+//                        }
+//                    }
+//
+//                    else if lots.parkingLocation=="South Side"
+//                    {
+//                        if lots.isOccupied==true
+//                        {
+//                            totalAvailableSlots=totalAvailableSlots-1
+//                        }
+//                        else
+//                        {
+//                            totalOccupiedSlots = totalOccupiedSlots+1
+//                        }
+//                    }
+//
+//                    else if lots.parkingLocation=="Main Side"
+//                    {
+//                        if lots.isOccupied==true
+//                        {
+//                            totalAvailableSlots=totalAvailableSlots-1
+//                        }
+//                        else
+//                        {
+//                            totalOccupiedSlots = totalOccupiedSlots+1
+//                        }
+//                    }
+//
+//
+//                }
+//            }
+//        }
+//        return "Available slots: \(totalAvailableSlots), Occupied slots: \(totalOccupiedSlots)"
+//    }
+//
+    func resetAvailableSlots()->Int{
+        totalAvailableSlots = 1000
+        return totalAvailableSlots
+    }
+    
+    func resetOccupiedSlots()->Int{
+        totalOccupiedSlots = 0
+        return totalOccupiedSlots
+    }
+    
+    
+    func availableSlots()->String{
+        
+        for lot in parkingLotLocation{
+           if lot.parkingLocation == "Main Side"
+           {
+            if lot.isOccupied == true{
+                //resetAvailableSlots()
+                //resetOccupiedSlots()
+                totalAvailableSlots = totalAvailableSlots - 1
+                totalOccupiedSlots = totalOccupiedSlots + 1
+            }else if lot.isOccupied == false
+            {
+//                resetAvailableSlots()
+//                resetOccupiedSlots()
+                totalAvailableSlots = totalAvailableSlots + 0
+                totalOccupiedSlots = totalOccupiedSlots + 0
+            }
+           }
+            
+           else if lot.parkingLocation == "East Side"{
+            if lot.isOccupied == true{
+                resetAvailableSlots()
+                resetOccupiedSlots()
+                totalAvailableSlots = totalAvailableSlots - 1
+                totalOccupiedSlots = totalOccupiedSlots + 1
+            }else if lot.isOccupied == false
+            {
+                resetOccupiedSlots()
+                resetAvailableSlots()
+                totalAvailableSlots = totalAvailableSlots + 0
+                totalOccupiedSlots = totalOccupiedSlots + 0
+            }
+           }
+            
+          
+           else if lot.parkingLocation == "South Side"{
+            if lot.isOccupied == true{
+                resetAvailableSlots()
+                resetOccupiedSlots()
+                totalAvailableSlots = totalAvailableSlots - 1
+                totalOccupiedSlots = totalOccupiedSlots + 1
+            }else if lot.isOccupied == false
+            {
+                resetOccupiedSlots()
+                resetAvailableSlots()
+                totalAvailableSlots = totalAvailableSlots - 1
+                totalOccupiedSlots = totalOccupiedSlots + 1
+            }
+            }
+            
+        }
+        
+        
+        return "Available slots: \(totalAvailableSlots), Occupied slots: \(totalOccupiedSlots)"
+    }
+    
+    func occupiedSlots()->Int{
+       
+        for lot in parkingLotLocation        {
+            if lot.parkingLocation.contains("Main") && lot.isOccupied == false
+            {
+                totalOccupiedSlots=totalOccupiedSlots+1
+            }
+            
+        }
+        return totalOccupiedSlots
+    }
+    
+    func fetchAllSuperMarkets(){
         let query = CKQuery(recordType: "SuperMarketDetails", predicate: NSPredicate(value: true))
         Custodian.publicDatabase.perform(query, inZoneWith: nil){
             (superMarketDetailsRecords,error) in
@@ -196,17 +352,16 @@ class SuperMarkets {
     }
     
     func populateCloudKitDatabase(){
-        
         var location:[SuperMarket:[ParkingLotLocation]]
         superMarkets=[SuperMarket(marketName: "Walmart", hours: "8AM-12PM") ,SuperMarket(marketName: "Hyvee", hours: "8AM-12PM"),
                             SuperMarket(marketName: "Dollar General", hours: "8AM-12PM")]
         
-        parkingLotLocation=[ParkingLotLocation(parkingLocation: ("North Side"), superMarkets: nil),
-                        ParkingLotLocation(parkingLocation: ("South Side"), superMarkets: nil),
-                        ParkingLotLocation(parkingLocation: ("Main Parking Lot"), superMarkets: nil),
-                        ParkingLotLocation(parkingLocation: ("East Side"), superMarkets: nil)]
+        parkingLotLocation=[ParkingLotLocation(parkingLocation: "North Side",slot:"A1",isOccupied:true,superMarkets:nil),
+                        ParkingLotLocation(parkingLocation: "Main Side",slot:"A2",isOccupied:true,superMarkets: nil),
+                        ParkingLotLocation(parkingLocation: "South Side",slot:"A1",isOccupied:true,superMarkets: nil),
+                        ParkingLotLocation(parkingLocation: "East Side",slot:"A1",isOccupied:false,superMarkets: nil)]
         
-        location=[superMarkets[0]:[parkingLotLocation[0],parkingLotLocation[1],parkingLotLocation[2]],
+        location=[superMarkets[0]:[parkingLotLocation[0],parkingLotLocation[1],parkingLotLocation[2],parkingLotLocation[3]],
                   superMarkets[1]:[parkingLotLocation[0],parkingLotLocation[1],parkingLotLocation[2]],
                   superMarkets[2]:[parkingLotLocation[0],parkingLotLocation[1],parkingLotLocation[2]]]
         
@@ -215,6 +370,7 @@ class SuperMarkets {
         //            Custodian.publicDatabase.save(superMarketDetails.record){
         //                (record,error) in
         //                if let error = error {
+
         //                    UIViewController.alert(title: "Disaster while saving teachers", message:"\(error)")
         //                } else {
         //                    UIViewController.alert(title:"Success, saved teacher", message:"")
@@ -236,15 +392,7 @@ class SuperMarkets {
         //                }
         //            }
         //        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         //    private var maryvilleSuperMarkets = [
         //        SuperMarketDetails(marketName: "WalMaart", hours: "Open 24/7", parkingLotLocation: ["Main ParkingLot","A10"]),
         //        SuperMarketDetails(marketName: "HyVee", hours: "Open 24/7", parkingLotLocation: ["Main ParkingLot","B20"]),

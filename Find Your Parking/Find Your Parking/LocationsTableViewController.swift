@@ -46,7 +46,7 @@ class LocationsTableViewController: UITableViewController {
     
     @objc func fetchAllSuperMarkets()
     {
-        SuperMarkets.shared.fetchAllSuperMarketDetails()
+        SuperMarkets.shared.fetchAllSuperMarkets()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,7 +72,7 @@ class LocationsTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "location", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "locationTVC", for: indexPath)
         
         //Configure the cell...
         let locations = SuperMarkets.shared.superMarkets[indexPath.row]
@@ -83,11 +83,19 @@ class LocationsTableViewController: UITableViewController {
     }
     
     
+//    let parkingLocations = storyboard?.instantiateViewController(withIdentifier: "ParkingViewController") as! ParkingCollectionViewController
+//    parkingLocations.superMarket=SuperMarkets.shared.superMarkets[indexPath.row]
+//
+//    // 2. Configure its Restaurant
+    
+    
+    //self.navigationController!.pushViewController(parkingLocations, animated: true)
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 1. Instantiate a MenuTableViewController
         
-        let slots = storyboard?.instantiateViewController(withIdentifier: "ParkingViewController") as! ParkingCollectionViewController
-        slots.superMarket=SuperMarkets.shared.superMarkets[indexPath.row]
+        let slots = storyboard?.instantiateViewController(withIdentifier: "ParkingLotTVC") as! ParkingLotTableViewController
+        slots.parkingSlots = SuperMarkets.shared.parkingLotLocation[indexPath.row]
         
         // 2. Configure its Restaurant
         

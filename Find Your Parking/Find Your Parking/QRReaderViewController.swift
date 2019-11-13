@@ -18,6 +18,7 @@ class QRReaderViewController: UIViewController {
     var photoOutput: AVCapturePhotoOutput?
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCaputerSession()
@@ -33,8 +34,8 @@ class QRReaderViewController: UIViewController {
         
     }
     
-    @IBAction func cameraButton(_ sender: Any){
-        performSegue(withIdentifier: "photo", sender: nil)
+    @IBAction func cameraButton(_ sender: Any) {
+        performSegue(withIdentifier: "Photo", sender: nil)
     }
     
     override func didReceiveMemoryWarning() {

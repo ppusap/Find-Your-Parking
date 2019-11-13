@@ -12,6 +12,7 @@
 		3F905B04234D539F004B3E6B /* ParkingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F905B03234D539F004B3E6B /* ParkingCollectionViewController.swift */; };
 		3F905B06234D5438004B3E6B /* ParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F905B05234D5438004B3E6B /* ParkingViewController.swift */; };
 		3F905BDF23625F11004B3E6B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F905BDE23625F11004B3E6B /* CloudKit.framework */; };
+		3F9864DD237CC71600336E25 /* QRReaderPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9864DC237CC71600336E25 /* QRReaderPreviewViewController.swift */; };
 		3FCEA69E23481C9F003170C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCEA69D23481C9F003170C1 /* AppDelegate.swift */; };
 		3FCEA6A023481C9F003170C1 /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCEA69F23481C9F003170C1 /* QRReaderViewController.swift */; };
 		3FCEA6A223481C9F003170C1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCEA6A123481C9F003170C1 /* MapViewController.swift */; };
@@ -28,6 +29,7 @@
 		3F905B05234D5438004B3E6B /* ParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingViewController.swift; sourceTree = "<group>"; };
 		3F905BDC23625ED6004B3E6B /* Find Your Parking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Find Your Parking.entitlements"; sourceTree = "<group>"; };
 		3F905BDE23625F11004B3E6B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		3F9864DC237CC71600336E25 /* QRReaderPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRReaderPreviewViewController.swift; sourceTree = "<group>"; };
 		3FCEA69A23481C9F003170C1 /* Find Your Parking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Find Your Parking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FCEA69D23481C9F003170C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FCEA69F23481C9F003170C1 /* QRReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				3FCEA69F23481C9F003170C1 /* QRReaderViewController.swift */,
 				3FCEA6A123481C9F003170C1 /* MapViewController.swift */,
 				3FCEA6A323481C9F003170C1 /* Main.storyboard */,
+				3F9864DC237CC71600336E25 /* QRReaderPreviewViewController.swift */,
 				3FCEA6A623481CA8003170C1 /* Assets.xcassets */,
 				3FCEA6A823481CA8003170C1 /* LaunchScreen.storyboard */,
 				3FCEA6AB23481CA8003170C1 /* Info.plist */,
@@ -182,6 +185,7 @@
 				3FCEA69E23481C9F003170C1 /* AppDelegate.swift in Sources */,
 				3F12BF4E23496D3F0052FBB9 /* Locations.swift in Sources */,
 				3FCEA6A023481C9F003170C1 /* QRReaderViewController.swift in Sources */,
+				3F9864DD237CC71600336E25 /* QRReaderPreviewViewController.swift in Sources */,
 				3F905B06234D5438004B3E6B /* ParkingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

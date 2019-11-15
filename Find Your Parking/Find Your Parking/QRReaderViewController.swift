@@ -5,7 +5,7 @@
 //  Created by Student on 10/4/19.
 //  Copyright © 2019 Bearcat Coders. All rights reserved.
 //
-
+/*
 import UIKit
 import AVFoundation
 
@@ -85,4 +85,4 @@ class QRReaderViewController: UIViewController {
     func startRunningCaputerSession() {
         session.startRunning()
     }
-}
+ }/**/*/

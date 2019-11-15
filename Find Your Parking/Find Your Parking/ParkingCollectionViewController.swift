@@ -53,6 +53,9 @@ class ParkingCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "parking", for: indexPath)
         cell.backgroundColor=cellColor ? UIColor.green:UIColor.lightGray
+        
+        
+        
         cellColor = !cellColor
     
         // Configure the cell

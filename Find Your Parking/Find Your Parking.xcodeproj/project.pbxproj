@@ -19,6 +19,7 @@
 		3FCEA6A723481CA8003170C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FCEA6A623481CA8003170C1 /* Assets.xcassets */; };
 		3FCEA6AA23481CA8003170C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FCEA6A823481CA8003170C1 /* LaunchScreen.storyboard */; };
 		3FCEA6B223481DDE003170C1 /* LocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCEA6B123481DDE003170C1 /* LocationsTableViewController.swift */; };
+		3FE55ECB2388C3960079882F /* ParkingDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE55ECA2388C3960079882F /* ParkingDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		3FCEA6A923481CA8003170C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FCEA6AB23481CA8003170C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FCEA6B123481DDE003170C1 /* LocationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsTableViewController.swift; sourceTree = "<group>"; };
+		3FE55ECA2388C3960079882F /* ParkingDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		3FCEA69C23481C9F003170C1 /* Find Your Parking */ = {
 			isa = PBXGroup;
 			children = (
+				3FE55ECA2388C3960079882F /* ParkingDetailsViewController.swift */,
 				3F905B03234D539F004B3E6B /* ParkingCollectionViewController.swift */,
 				3FA46614237DC1E8004E5742 /* ParkingViewController.swift */,
 				3F905BDC23625ED6004B3E6B /* Find Your Parking.entitlements */,
@@ -182,6 +185,7 @@
 				3FA46615237DC1E8004E5742 /* ParkingViewController.swift in Sources */,
 				3FCEA69E23481C9F003170C1 /* AppDelegate.swift in Sources */,
 				3F12BF4E23496D3F0052FBB9 /* Locations.swift in Sources */,
+				3FE55ECB2388C3960079882F /* ParkingDetailsViewController.swift in Sources */,
 				3FCEA6A023481C9F003170C1 /* QRReaderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

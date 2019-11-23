@@ -53,6 +53,7 @@ class ParkingDetailsViewController: UIViewController {
                
                if String(displayData[0]) == "w" || String(displayData[0]) == "W"{
                    superMarketNameLBL.text = "Walmart"
+                 Supermarkets.shared.displayMapDetails = "Walmart"
                    if String(displayData[1]) == "s" || String(displayData[1]) == "S"{
                        parkingLotLocationLBL.text = "South"
                        
@@ -68,6 +69,7 @@ class ParkingDetailsViewController: UIViewController {
                    parkingNumberLBL.text = scanData
                }else if String(displayData[0]) == "h" || String(displayData[0]) == "H"{
                    superMarketNameLBL.text = "Hyvee"
+                 Supermarkets.shared.displayMapDetails = "HyVee"
                    if String(displayData[1]) == "s" || String(displayData[1]) == "S"{
                        parkingLotLocationLBL.text = "South"
                    }else if String(displayData[1]) == "n" || String(displayData[1]) == "N"{
@@ -82,6 +84,7 @@ class ParkingDetailsViewController: UIViewController {
                    parkingNumberLBL.text = scanData
                }else if String(displayData[0]) == "d" || String(displayData[0]) == "D"{
                    superMarketNameLBL.text = "Dollar General"
+                   Supermarkets.shared.displayMapDetails="Dollar General"
                    if String(displayData[1]) == "s" || String(displayData[1]) == "S"{
                        parkingLotLocationLBL.text = "South"
                    }else if String(displayData[1]) == "n" || String(displayData[1]) == "N"{
@@ -97,6 +100,7 @@ class ParkingDetailsViewController: UIViewController {
                }
                else if String(displayData[0]) == "t" || String(displayData[0]) == "T"{
                    superMarketNameLBL.text = "Target"
+                 Supermarkets.shared.displayMapDetails="Target"
                    if String(displayData[1]) == "s" || String(displayData[1]) == "S"{
                        parkingLotLocationLBL.text = "South"
                    }else if String(displayData[1]) == "n" || String(displayData[1]) == "N"{

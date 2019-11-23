@@ -19,7 +19,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     //var decodedmapValue:String!
-    var supermarketName: String!
+   
+    @IBAction func closeButton(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    //var decodedmapValue:String!
+    var supermarketName = Supermarkets.shared.displayMapDetails
     
     
     override func viewDidLoad() {
@@ -28,19 +34,25 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         //NotificationCenter.default.addObserver(self, selector: #selector(addAnnotations(notification:)), name: NSNotification.Name("annotationsReceived"), object: nil)
         addAnnotation()
         mapView.delegate = self
+        //self.navigationController?.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         print(supermarketName)
-        
     }
+    
+    @objc func cancel(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // The below function creates a new Annotation function and adds that annotation to the mapview
     func addAnnotation(){
         let myAnnotation = MKPointAnnotation()
         print("hi")
-
-        print(supermarketName!)
-        switch supermarketName!{
-        case "walmart":
+        
+        print(supermarketName)
+        switch supermarketName{
+        case "Walmart":
             myAnnotation.coordinate = CLLocationCoordinate2D(latitude: 40.329998, longitude: -94.870303)
             mapView.addAnnotation(myAnnotation)
-        case "Hy-Vee":
+        case "HyVee":
             myAnnotation.coordinate = CLLocationCoordinate2D(latitude: 40.333483,longitude: -94.872222)
             mapView.addAnnotation(myAnnotation)
         case "Dollar General":
@@ -52,15 +64,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         //myAnnotation.coordinate = CLLocationCoordinate2D(latitude: 40.3461, longitude: -94.8725)
         
-        //var valueSplit = decodedmapValue?.split(separator: "-")
         
-        //myAnnotation.title = String(valueSplit![0])
-        //myAnnotation.subtitle = String(valueSplit![1])
+        
+        myAnnotation.title = "Your parking Location"
+        //myAnnotation.subtitle =
         //mapView.addAnnotation(myAnnotation)
         
     }
     
-
+    // The below function is for the AnnotationView
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if annotation.isKind(of: MKUserLocation.self) {
@@ -68,7 +80,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
         
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "anno") as? MKPinAnnotationView // MKMarkerAnnotationView
-       
+        
         if annotationView == nil {
             // no annotation view, we'll make one ...
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "anno")
@@ -84,14 +96,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         return annotationView
     }
     
-    //@objc
-    //func clickMe(sender:UIButton){
-     //   let parkingCVC = self.storyboard?.instantiateViewController(withIdentifier: "ParkingCollectionVC")
-      //  self.present(parkingCVC!, animated: true, completion: nil) // probably not quite what we want ;-(
-   // }
-
-    
-    
+    @objc
+    func clickMe(sender:UIButton){
+        let parkingCVC = self.storyboard?.instantiateViewController(withIdentifier: "ParkingCollectionVC")//
+        self.present(parkingCVC!, animated: true, completion: nil) // probably not quite what we want ;-(
+    }
     
     let locationManager = CLLocationManager()
     let regionInMeters: Double = 20000
@@ -99,20 +108,21 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
         tabBarItem.title = "Map Screen"
-    }
-     
-    func setUpLocationManager(){
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        //self.navigationController?.navigationItem.backBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
     }
     
+    func setUpLocationManager(){
+        //  locationManager.delegate = self as! CLLocationManagerDelegate
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    // The below function makes the map appear in the centre of the mapview
     func centerViewOnUserLocation(){
-       if let location = locationManager.location?.coordinate {
+        if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegionMakeWithDistance(location, regionInMeters, regionInMeters)
             mapView.setRegion(region, animated: true)
         }
     }
-    
+    // The below fuction is used to check if the location servics id enabled or not in the phone
     func checkLocationServices(){
         if CLLocationManager.locationServicesEnabled(){
             setUpLocationManager()
@@ -121,24 +131,24 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             
         }
     }
-    
+    // The below function is used to check if the user is allowing to access the location or not
     func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
-              mapView.showsUserLocation = true
-              //centerViewOnUserLocation()
-              locationManager.startUpdatingLocation()
-              break
+            mapView.showsUserLocation = true
+            //centerViewOnUserLocation()
+            locationManager.startUpdatingLocation()
+            break
         case .denied:
             //show an alert
-               break
+            break
         case .notDetermined:
-               locationManager.requestWhenInUseAuthorization()
+            locationManager.requestWhenInUseAuthorization()
         case .restricted:
             //show an alert
-               break
+            break
         case .authorizedAlways:
-               break
+            break
         }
     }
     
@@ -149,16 +159,16 @@ extension MapViewController: CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //guard let location = locations.last else {
-         //   return
-       // }
+        //   return
+        // }
         //let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude
-         //   , longitude: location.coordinate.longitude)
+        //   , longitude: location.coordinate.longitude)
         //let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-       // mapView.setRegion(region, animated: true)
+        // mapView.setRegion(region, animated: true)
     }
-    
+    // The below funtion is to check whether the user has changed the authorization status.
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-       checkLocationServices()
+        //checkLocationServices()
     }
 }
 

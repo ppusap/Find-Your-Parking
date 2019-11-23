@@ -25,8 +25,8 @@ class ParkingViewController: UIViewController, MKMapViewDelegate {
     func addAnnotation(){
         let myAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2D(latitude: 40.3461, longitude: -94.8725)
-        myAnnotation.title = "   Hyvee  "
-        myAnnotation.subtitle = "A1 Parking slot"
+        myAnnotation.title = Supermarkets.shared.displayMapDetails
+      
         mapView.addAnnotation(myAnnotation)
         
     }

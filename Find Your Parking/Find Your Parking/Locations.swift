@@ -197,6 +197,7 @@ class Supermarkets{
     var parkinglot:[Parkinglot]=[]
     var slot:[Slot]=[]
     var scanStorageData:String="0-0-0"
+     var displayMapDetails:String=""
     static var shared: Supermarkets {
         if _shared == nil {
             _shared = Supermarkets()

@@ -103,7 +103,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     let locationManager = CLLocationManager()
-    let regionInMeters: Double = 20000
+    let regionInMeters: Double = 100
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)

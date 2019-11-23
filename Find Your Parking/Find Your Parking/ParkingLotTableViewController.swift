@@ -70,7 +70,7 @@ class ParkingLotTableViewController: UITableViewController {
     
     //Defines the function after selecting the specific cell in the table
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let parkingLocations = storyboard?.instantiateViewController(withIdentifier: "ParkingCollectionVC") as! ParkingCollectionCustomViewController
+        let parkingLocations = storyboard?.instantiateViewController(withIdentifier: "ParkingCollectionVC") as! ParkingCollectionViewController
         parkingLocations.parkingLot=parkingLots[indexPath.row]
         self.navigationController!.pushViewController(parkingLocations, animated: true)
     }

@@ -2,96 +2,85 @@
 //  ParkingCollectionViewController.swift
 //  Find Your Parking
 //
-//  Created by student on 10/8/19.
+//  Created by student on 11/22/19.
 //  Copyright © 2019 Bearcat Coders. All rights reserved.
 //
 
 import UIKit
+import CloudKit
 
-private let reuseIdentifier = "Cell"
-
-class ParkingCollectionViewController: UICollectionViewController {
-    var superMarket:SuperMarket!
+class ParkingCollectionViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     
+    
+    var supermarkets:Supermarkets!
+    var parkingLot: Parkinglot!
+    var slots: [Slot] = []
     var cellColor=true
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "parking")
-
-        // Do any additional setup after loading the view.
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-//updated 6 sections
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 6
-    }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 24
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "parking", for: indexPath)
-        cell.backgroundColor=cellColor ? UIColor.green:UIColor.lightGray
-        
-        
-        
-        cellColor = !cellColor
+    @IBOutlet weak var parkingCollectionView:UICollectionView!
     
-        // Configure the cell
+    //It reloads every time when we view the collection class
+    override func viewWillAppear(_ animated: Bool) {
+        fetchSlotsOfParkinglot()
+    }
+    //fetches the slots of particular parking lot from the cloud
+    @objc func  fetchSlotsOfParkinglot(){
+        let parkinglotID=parkingLot.record.recordID
+        let predicate = NSPredicate(format:"parkinglot == %@", parkinglotID)
+        let query = CKQuery(recordType: "slot", predicate:predicate) // this gets *all* students
+        Custodian.publicDatabase.perform(query, inZoneWith: nil){
+            (records, error) in
+            if let error = error {
+                UIViewController.alert(title: "Disaster in fetchAllSlotsofParkingLots()", message:"\(error)")
+                return
+            } else {
+                self.slots=[]
+                if let slotRecords=records
+                {
+                    for slotRecord in slotRecords {          // here we map from CloudKit to our model
+                        let slot = Slot(record:slotRecord)
+                        self.slots.append(slot)
+                        
+                    }
+                    DispatchQueue.main.async {
+                        self.parkingCollectionView.reloadData()
+                    }
+                    print(self.slots.count)
+                }
+            }
+        }
+    }
     
+    //Defines the number of sections in the collection view controller
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    //defines the number of cells
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return slots.count
+        
+    }
+    
+    //Displays the availability and slot name of the each cell in the collection view
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell=collectionView.dequeueReusableCell(withReuseIdentifier: "slots", for: indexPath) as! ParkingCollectionViewCell
+        let slotCell=slots[indexPath.item]
+        cell.slotLBL.text=slotCell.slotNumber
+        cell.backgroundColor=slotCell.isOccupied ? UIColor.lightGray:UIColor.green
+        
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    
+    //Defines the function after selecting the particular cell
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
     }
-    */
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -109,54 +109,10 @@
             </objects>
             <point key="canvasLocation" x="824.79999999999995" y="749.7751124437782"/>
         </scene>
-        <!--Available Parking Slots-->
-        <scene sceneID="QgU-SH-Qdq">
-            <objects>
-                <collectionViewController storyboardIdentifier="ParkingCollectionVC" id="LDg-v7-CTF" customClass="ParkingCollectionViewController" customModule="Find_Your_Parking" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" dataMode="prototypes" id="Pld-NP-iqY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <inset key="scrollIndicatorInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="15" id="VFV-Ij-PvM">
-                            <size key="itemSize" width="15" height="40"/>
-                            <size key="headerReferenceSize" width="14" height="25"/>
-                            <size key="footerReferenceSize" width="14" height="25"/>
-                            <inset key="sectionInset" minX="15" minY="15" maxX="15" maxY="15"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="parking" id="E0T-Cx-fXn">
-                                <rect key="frame" x="15" y="40" width="15" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="15" height="40"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SCJ-kz-LNd">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="25"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </collectionReusableView>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uGX-ed-snf">
-                            <rect key="frame" x="0.0" y="95" width="414" height="25"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </collectionReusableView>
-                        <connections>
-                            <outlet property="dataSource" destination="LDg-v7-CTF" id="jXX-XA-0ad"/>
-                            <outlet property="delegate" destination="LDg-v7-CTF" id="iq7-MY-I0k"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="Available Parking Slots" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="NlK-pc-fhL"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JVY-z6-GHO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3345" y="0.0"/>
-        </scene>
-        <!--Locations Table View Controller-->
+        <!--Supermarket Table View Controller-->
         <scene sceneID="CIx-ZG-opc">
             <objects>
-                <tableViewController id="qoc-HM-FsN" customClass="LocationsTableViewController" customModule="Find_Your_Parking" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="qoc-HM-FsN" customClass="SupermarketTableViewController" customModule="Find_Your_Parking" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qLG-ag-4R4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,6 +191,66 @@
             </objects>
             <point key="canvasLocation" x="2503" y="-805"/>
         </scene>
+        <!--Parking Collection View Controller-->
+        <scene sceneID="Lhm-y3-u0R">
+            <objects>
+                <viewController id="J8X-ki-J5M" customClass="ParkingCollectionViewController" customModule="Find_Your_Parking" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zP9-Ac-4sr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="98Q-si-xHK">
+                                <rect key="frame" x="0.0" y="68" width="405" height="805"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="14" id="stg-fD-1xg">
+                                    <size key="itemSize" width="70" height="105"/>
+                                    <size key="headerReferenceSize" width="5" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="8" minY="6" maxX="8" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dPQ-ZA-NrW" customClass="ParkingCollectionViewCell" customModule="Find_Your_Parking" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="6" width="70" height="105"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="70" height="105"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYd-Vv-50r">
+                                                    <rect key="frame" x="0.0" y="29" width="70" height="41"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <connections>
+                                            <outlet property="slotLBL" destination="cYd-Vv-50r" id="IoJ-8O-RoK"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="8VO-bM-ZCL">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="J8X-ki-J5M" id="tJf-YI-KOG"/>
+                                    <outlet property="delegate" destination="J8X-ki-J5M" id="fdF-UR-csc"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="rtU-GC-iul"/>
+                    </view>
+                    <connections>
+                        <outlet property="parkingCollectionView" destination="98Q-si-xHK" id="sff-0t-Xic"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r9F-LL-PPX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1652" y="-9"/>
+        </scene>
         <!--Parking View Controller-->
         <scene sceneID="Wgg-eL-hRa">
             <objects>
@@ -296,24 +312,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZXB-h6-sHu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-804.64767616191909"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="xYp-Wl-0FP">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ucc-sW-ZdQ" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XaW-aD-8hq">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="LDg-v7-CTF" kind="relationship" relationship="rootViewController" id="4Nt-eZ-TAl"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gk7-yk-Iil" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2558" y="0.0"/>
         </scene>
     </scenes>
     <resources>

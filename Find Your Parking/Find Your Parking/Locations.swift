@@ -17,13 +17,15 @@ extension UIViewController {
     }
 }
 
-/// Custodian keeps track of the databases for us
+// Custodian keeps track of the databases for us
 class Custodian {
     static var defaultContainer:CKContainer = CKContainer.default()
     static var publicDatabase:CKDatabase = defaultContainer.publicCloudDatabase
     static var privateDatabase:CKDatabase = defaultContainer.privateCloudDatabase
     static var anotherDatabase = CKContainer(identifier: "").publicCloudDatabase
 }
+
+// A class supermarket to store supermarket details
 
 class Supermarket:Equatable,CKRecordValueProtocol,Hashable
 {
@@ -83,6 +85,9 @@ class Supermarket:Equatable,CKRecordValueProtocol,Hashable
     
 }
 
+
+// A class Parking Lot to store supermarket details
+
 class Parkinglot:Equatable,Hashable
 {
     var record: CKRecord!
@@ -140,6 +145,8 @@ class Parkinglot:Equatable,Hashable
     
 }
 
+// A class Slot to store supermarket details
+
 class Slot:Equatable
 {
     var record: CKRecord!
@@ -190,6 +197,8 @@ class Slot:Equatable
     
     
 }
+
+// A singleton model class.
 
 class Supermarkets{
     private static var _shared: Supermarkets!
@@ -244,7 +253,7 @@ class Supermarkets{
         }
     }
     
-    
+    // A function to populate data into the cloudkit
     
     func populateCloudKitDatabase(){
         

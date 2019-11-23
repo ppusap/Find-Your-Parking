@@ -18,7 +18,7 @@ class QRReaderViewController: UIViewController{
     
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
-    //@IBOutlet weak var aimIV: UIImageView!
+    
 
     @IBOutlet var messageLabel:UILabel!
     @IBOutlet var topbar: UIView!
@@ -93,6 +93,7 @@ class QRReaderViewController: UIViewController{
         // Dispose of any resources that can be recreated.
     }
     
+    // A function to launch camera and perform neccesary actions after scanning
     // MARK: - Helper methods
     func launchApp(decodedURL: String) {
         
@@ -133,11 +134,16 @@ class QRReaderViewController: UIViewController{
        
         
     }
+    
+    // A function to add preview layer
     private func updatePreviewLayer(layer: AVCaptureConnection, orientation: AVCaptureVideoOrientation) {
         layer.videoOrientation = orientation
         videoPreviewLayer?.frame = self.view.bounds
     }
     
+
+    //A function to scan the device in any direction
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -169,7 +175,7 @@ class QRReaderViewController: UIViewController{
     }
     
 }
-
+// an extension to see if the captured object is QR code
 extension QRReaderViewController: AVCaptureMetadataOutputObjectsDelegate {
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {

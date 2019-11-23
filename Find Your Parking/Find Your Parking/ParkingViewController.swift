@@ -18,10 +18,11 @@ class ParkingViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
           checkLocationServices()
-        //NotificationCenter.default.addObserver(self, selector: #selector(addAnnotations(notification:)), name: NSNotification.Name("annotationsReceived"), object: nil)
         addAnnotation()
         mapView.delegate = self
     }
+    
+    // A function to add a pin in respective coordinates
     func addAnnotation(){
         let myAnnotation = MKPointAnnotation()
         myAnnotation.coordinate = CLLocationCoordinate2D(latitude: 40.3461, longitude: -94.8725)
@@ -41,14 +42,14 @@ class ParkingViewController: UIViewController, MKMapViewDelegate {
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "anno") as? MKPinAnnotationView // MKMarkerAnnotationView
        
         if annotationView == nil {
-            // no annotation view, we'll make one ...
+            
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "anno")
             annotationView!.canShowCallout = true
             let callBTN = UIButton(type: .detailDisclosure)
             callBTN.addTarget(self, action: #selector(clickMe(sender:)), for: UIControl.Event.touchUpInside)
             annotationView!.rightCalloutAccessoryView = callBTN
             annotationView?.pinTintColor = UIColor.green
-            //annotationView!.markerTintColor = UIColor.green
+          
         } else {
             annotationView!.annotation = annotation
         }
@@ -58,7 +59,7 @@ class ParkingViewController: UIViewController, MKMapViewDelegate {
     @objc
     func clickMe(sender:UIButton){
         let parkingCVC = self.storyboard?.instantiateViewController(withIdentifier: "ParkingCollectionVC")
-        self.present(parkingCVC!, animated: true, completion: nil) // probably not quite what we want ;-(
+        self.present(parkingCVC!, animated: true, completion: nil)
     }
     
     
@@ -119,13 +120,6 @@ class ParkingViewController: UIViewController, MKMapViewDelegate {
 extension ParkingViewController: CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //guard let location = locations.last else {
-         //   return
-       // }
-        //let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude
-         //   , longitude: location.coordinate.longitude)
-        //let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-       // mapView.setRegion(region, animated: true)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

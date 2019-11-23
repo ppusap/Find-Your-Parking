@@ -21,19 +21,9 @@ class ParkingDetailsViewController: UIViewController {
         let sprmrktName = storyboard?.instantiateViewController(withIdentifier: "mapViewIDNV") as! UINavigationController
         let supermarketname = sprmrktName.topViewController as? MapViewController
         supermarketname?.supermarketName = supermarketName
-//        switch supermarketName! {
-//        case "walmart":
-//            supermarketname?.supermarketName = .walmart
-//        case "Hy-Vee":
-//            supermarketname?.supermarketName = .hyvee
-//        case "Dollar General":
-//            supermarketname?.supermarketName = .dollarGeneral
-//        default:
-//            print(Error.self)
-//        }
+
         print(supermarketName)
         
-        //self.performSegue(withIdentifier:"ParkingViewSegue", sender: self)
         self.present(sprmrktName, animated: true, completion: nil)
     }
     
@@ -44,6 +34,8 @@ class ParkingDetailsViewController: UIViewController {
 
     }
     
+    
+    // To retrieve the string after scanned and saving details
     override func viewWillAppear(_ animated: Bool) {
          scanData = Supermarkets.shared.scanStorageData
                
